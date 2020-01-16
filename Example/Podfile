@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'RxDataSourcesExt_Example' do
+  pod 'RxDataSourcesExt', :path => '../'
+
+  target 'RxDataSourcesExt_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
