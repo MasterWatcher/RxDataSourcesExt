@@ -1,0 +1,6 @@
+framework module RxDataSourcesExt {
+  umbrella header "RxDataSourcesExt-umbrella.h"
+
+  export *
+  module * { export * }
+}

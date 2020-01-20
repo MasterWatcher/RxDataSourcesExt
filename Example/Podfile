@@ -2,6 +2,7 @@ use_frameworks!
 
 target 'RxDataSourcesExt_Example' do
   pod 'RxDataSourcesExt', :path => '../'
+  pod 'SnapKit', '~> 4.2.0'
 
   target 'RxDataSourcesExt_Tests' do
     inherit! :search_paths
