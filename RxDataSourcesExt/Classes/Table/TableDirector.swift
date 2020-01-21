@@ -60,7 +60,7 @@ public class TableDirector: NSObject {
 }
 
 extension TableDirector : UITableViewDelegate {
-    private func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         dataSource[indexPath].rowHeight
     }
 }
