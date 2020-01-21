@@ -14,6 +14,5 @@ struct ButtonCellViewModel: TableCellViewModel {
 
     let id = UUID().uuidString
     let title: String
-    let rowHeight = UITableViewAutomaticDimension
 }
 

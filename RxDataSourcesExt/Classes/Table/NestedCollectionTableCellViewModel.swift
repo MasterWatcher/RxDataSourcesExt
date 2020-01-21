@@ -21,7 +21,7 @@ extension NestedCollectionTableCellViewModel {
 
     var tableReuseIdentifier: String { String(describing: TableCellType.self) }
 
-    var rowHeight: CGFloat { UITableViewAutomaticDimension }
+    var rowHeight: CGFloat { UITableView.automaticDimension }
 
     var nestedType: NestedType { .collection(sections: nestedSections) }
 

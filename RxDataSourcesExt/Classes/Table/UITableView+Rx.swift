@@ -45,10 +45,10 @@ extension Reactive where Base: UITableView {
     }
 
     public func configureKeyboard() -> Disposable {
-        return NotificationCenter.default.rx.notification(NSNotification.Name.UIKeyboardWillChangeFrame)
+        return NotificationCenter.default.rx.notification(UIResponder.keyboardWillChangeFrameNotification)
             .subscribe(onNext: { note in
-                if let newFrame = (note.userInfo?[ UIKeyboardFrameEndUserInfoKey ] as? NSValue)?.cgRectValue {
-                    let insets = UIEdgeInsetsMake( 0, 0, newFrame.height, 0 )
+                if let newFrame = (note.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+                    let insets = UIEdgeInsets( top: 0, left: 0, bottom: newFrame.height, right: 0 )
                     self.base.contentInset = insets
                     self.base.scrollIndicatorInsets = insets
                 }

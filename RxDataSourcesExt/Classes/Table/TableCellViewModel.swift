@@ -20,7 +20,7 @@ public extension TableCellViewModel {
 
     var tableCellType: UITableViewCell.Type { TableCellType.self }
 
-    var rowHeight: CGFloat { UITableViewAutomaticDimension }
+    var rowHeight: CGFloat { UITableView.automaticDimension }
 
     var nestedType: NestedType { .none }
 
