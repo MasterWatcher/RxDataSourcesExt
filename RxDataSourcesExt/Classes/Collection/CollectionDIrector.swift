@@ -17,9 +17,9 @@ class CollectionDirector: NSObject {
     typealias DataSource = RxCollectionViewSectionedAnimatedDataSource<CollectionSectionModel>
 
     let cellConfigured = PublishRelay<CollectionConfigurationData>()
-    private let animationConfiguration: AnimationConfiguration
+    private let animationConfiguration: AnimationConfiguration?
 
-    init(animationConfiguration: AnimationConfiguration = .none) {
+    init(animationConfiguration: AnimationConfiguration? = nil) {
         self.animationConfiguration = animationConfiguration
     }
 
@@ -30,7 +30,11 @@ class CollectionDirector: NSObject {
             self.cellConfigured.accept((cell, item))
             return cell
         }
-        let dataSource = DataSource(animationConfiguration: animationConfiguration, configureCell: configureCell)
+        let dataSource = DataSource(animationConfiguration: animationConfiguration ?? AnimationConfiguration(),
+                                    configureCell: configureCell)
+        if animationConfiguration == nil {
+            dataSource.decideViewTransition = { _,_,_  in RxDataSources.ViewTransition.reload }
+        }
         return dataSource
     }()
 }

@@ -8,13 +8,6 @@
 import RxDataSources
 
 extension AnimationConfiguration {
-
-    public static var none: AnimationConfiguration {
-        AnimationConfiguration(insertAnimation: .none,
-                               reloadAnimation: .none,
-                               deleteAnimation: .none)
-    }
-
     public static var fade: AnimationConfiguration {
            AnimationConfiguration(insertAnimation: .fade,
                                   reloadAnimation: .fade,

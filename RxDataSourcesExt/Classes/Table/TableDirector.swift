@@ -18,10 +18,10 @@ public class TableDirector: NSObject {
 
     lazy var collectionDirector = CollectionDirector(animationConfiguration: .fade)
     let cellConfigured = PublishRelay<TableConfigurationData>()
-    private let animationConfiguration: AnimationConfiguration
+    private let animationConfiguration: AnimationConfiguration?
     private lazy var cellRegisterer = TableCellRegisterer()
 
-    public init(animationConfiguration: AnimationConfiguration = .none) {
+    public init(animationConfiguration: AnimationConfiguration? = nil) {
         self.animationConfiguration = animationConfiguration
     }
 
@@ -43,9 +43,13 @@ public class TableDirector: NSObject {
             return section.title
         }
 
-        let dataSource = DataSource(animationConfiguration: animationConfiguration,
+        let dataSource = DataSource(animationConfiguration: animationConfiguration ?? AnimationConfiguration(),
                                     configureCell: configureCell,
                                     titleForHeaderInSection: titleForHeaderInSection)
+
+        if animationConfiguration == nil {
+            dataSource.decideViewTransition = { _,_,_  in RxDataSources.ViewTransition.reload }
+        }
         return dataSource
     }()
 
