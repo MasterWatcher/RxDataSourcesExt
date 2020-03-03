@@ -15,6 +15,10 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		B47943B315FCD7B6504B8DF7 /* Pods_RxDataSourcesExt_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82D872EDE8696AB24944575A /* Pods_RxDataSourcesExt_Tests.framework */; };
+		E4CEB395240E635300071655 /* EmbedCollectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CEB394240E635300071655 /* EmbedCollectionCellViewModel.swift */; };
+		E4CEB397240E636900071655 /* EmbedCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CEB396240E636900071655 /* EmbedCollectionCell.swift */; };
+		E4CEB39A240E651700071655 /* TimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CEB399240E651700071655 /* TimeCell.swift */; };
+		E4CEB39C240E652200071655 /* TimeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CEB39B240E652200071655 /* TimeCellViewModel.swift */; };
 		E4D8267C23D5DE5C00BE7011 /* LabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D8267B23D5DE5C00BE7011 /* LabelCell.swift */; };
 		E4D8267F23D5E57500BE7011 /* LabelCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D8267E23D5E57500BE7011 /* LabelCellViewModel.swift */; };
 		E4D8268223D5EE6300BE7011 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D8268123D5EE6300BE7011 /* ButtonCell.swift */; };
@@ -49,6 +53,10 @@
 		B8E3CE724B50129CF2AD239B /* Pods_RxDataSourcesExt_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxDataSourcesExt_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB57861D8D571D125D06F080 /* Pods-RxDataSourcesExt_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxDataSourcesExt_Tests.release.xcconfig"; path = "Target Support Files/Pods-RxDataSourcesExt_Tests/Pods-RxDataSourcesExt_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		CDB6ECFC123D0AF9FA1D1903 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		E4CEB394240E635300071655 /* EmbedCollectionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbedCollectionCellViewModel.swift; sourceTree = "<group>"; };
+		E4CEB396240E636900071655 /* EmbedCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbedCollectionCell.swift; sourceTree = "<group>"; };
+		E4CEB399240E651700071655 /* TimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCell.swift; sourceTree = "<group>"; };
+		E4CEB39B240E652200071655 /* TimeCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCellViewModel.swift; sourceTree = "<group>"; };
 		E4D8267B23D5DE5C00BE7011 /* LabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelCell.swift; sourceTree = "<group>"; };
 		E4D8267E23D5E57500BE7011 /* LabelCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelCellViewModel.swift; sourceTree = "<group>"; };
 		E4D8268123D5EE6300BE7011 /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
@@ -168,9 +176,29 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E4CEB393240E632600071655 /* EmbedCollectionCell */ = {
+			isa = PBXGroup;
+			children = (
+				E4CEB394240E635300071655 /* EmbedCollectionCellViewModel.swift */,
+				E4CEB396240E636900071655 /* EmbedCollectionCell.swift */,
+			);
+			name = EmbedCollectionCell;
+			sourceTree = "<group>";
+		};
+		E4CEB398240E650C00071655 /* TimeCell */ = {
+			isa = PBXGroup;
+			children = (
+				E4CEB39B240E652200071655 /* TimeCellViewModel.swift */,
+				E4CEB399240E651700071655 /* TimeCell.swift */,
+			);
+			name = TimeCell;
+			sourceTree = "<group>";
+		};
 		E4D8267923D5DE3900BE7011 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				E4CEB398240E650C00071655 /* TimeCell */,
+				E4CEB393240E632600071655 /* EmbedCollectionCell */,
 				E4D8268023D5EE5500BE7011 /* ButtonCell */,
 				E4D8267A23D5DE4900BE7011 /* LabelCell */,
 			);
@@ -377,10 +405,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4CEB395240E635300071655 /* EmbedCollectionCellViewModel.swift in Sources */,
+				E4CEB39C240E652200071655 /* TimeCellViewModel.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				E4D8267C23D5DE5C00BE7011 /* LabelCell.swift in Sources */,
+				E4CEB39A240E651700071655 /* TimeCell.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				E4D8268223D5EE6300BE7011 /* ButtonCell.swift in Sources */,
+				E4CEB397240E636900071655 /* EmbedCollectionCell.swift in Sources */,
 				E4D8268423D5EE6F00BE7011 /* ButtonCellViewModel.swift in Sources */,
 				E4D8267F23D5E57500BE7011 /* LabelCellViewModel.swift in Sources */,
 			);

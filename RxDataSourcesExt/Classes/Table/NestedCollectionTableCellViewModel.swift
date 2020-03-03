@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol NestedCollectionTableCellViewModel: TableItemType, Equatable {
+public protocol NestedCollectionTableCellViewModel: TableItemType, Equatable {
 
     associatedtype TableCellType: ConfigurableCell & CollectionContainableCell & UITableViewCell where TableCellType.ViewModel == Self
 
@@ -15,11 +15,13 @@ protocol NestedCollectionTableCellViewModel: TableItemType, Equatable {
     var nestedSections: [CollectionSectionModel] { get }
 }
 
-extension NestedCollectionTableCellViewModel {
+public extension NestedCollectionTableCellViewModel {
 
     var identity: String { id }
 
     var tableReuseIdentifier: String { String(describing: TableCellType.self) }
+
+    var tableCellType: UITableViewCell.Type { TableCellType.self }
 
     var rowHeight: CGFloat { UITableView.automaticDimension }
 

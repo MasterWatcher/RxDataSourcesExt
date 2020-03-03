@@ -11,7 +11,7 @@ public struct CollectionSectionModel: Equatable {
     let id: String
     public let items: [AnyCollectionItem]
 
-    init(id: String = UUID().uuidString, items: [CollectionItemType]) {
+    public init(id: String = UUID().uuidString, items: [CollectionItemType]) {
         self.id = id
         self.items = items.map(AnyCollectionItem.init)
     }

@@ -21,7 +21,11 @@ class ViewController: UIViewController {
 
         let buttonCell = ButtonCellViewModel(title: "Button")
         let labelItem = LabelCellViewModel(title: "Test")
-        let sections = [TableSectionModel(items: [buttonCell, labelItem, labelItem, labelItem])]
+        let nestedSection = CollectionSectionModel(items: [ TimeCellViewModel(title: "11:00"),
+                                                            TimeCellViewModel(title: "12:00"),
+                                                            TimeCellViewModel(title: "13:00")])
+        let collectionItem = EmbedCollectionCellViewModel(id: "collection", nestedSections: [nestedSection])
+        let sections = [TableSectionModel(items: [buttonCell, labelItem, labelItem, labelItem, collectionItem])]
 
         let director = TableDirector(animationConfiguration: .shift)
 

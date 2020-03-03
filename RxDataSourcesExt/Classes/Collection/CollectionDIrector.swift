@@ -18,13 +18,17 @@ class CollectionDirector: NSObject {
 
     let cellConfigured = PublishRelay<CollectionConfigurationData>()
     private let animationConfiguration: AnimationConfiguration?
+    private lazy var cellRegisterer = CollectionCellRegisterer()
 
     init(animationConfiguration: AnimationConfiguration? = nil) {
         self.animationConfiguration = animationConfiguration
     }
 
     lazy var dataSource: DataSource = {
-        let configureCell: DataSource.ConfigureCell = {(_, collectionView, indexPath, item) in
+        let configureCell: DataSource.ConfigureCell = { (_, collectionView, indexPath, item) in
+            self.cellRegisterer.register(cellType: item.collectionCellType,
+                                    for: item.collectionReuseIdentifier,
+                                    indexPath: indexPath, in: collectionView)
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: item.collectionReuseIdentifier, for: indexPath)
             item.configure(cell)
             self.cellConfigured.accept((cell, item))

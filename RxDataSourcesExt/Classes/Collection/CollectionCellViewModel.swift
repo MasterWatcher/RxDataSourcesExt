@@ -7,15 +7,17 @@
 
 import UIKit
 
-protocol CollectionCellViewModel: CollectionItemType, Equatable {
+public protocol CollectionCellViewModel: CollectionItemType, Equatable {
     associatedtype CollectionCellType: ConfigurableCell & UICollectionViewCell where CollectionCellType.ViewModel == Self
 }
 
-extension CollectionCellViewModel {
+public extension CollectionCellViewModel {
 
     var collectionReuseIdentifier: String {
         String(describing: CollectionCellType.self)
     }
+
+    var collectionCellType: UICollectionViewCell.Type { CollectionCellType.self }
 
     //according to https://developer.apple.com/documentation/uikit/uicollectionviewflowlayout/1617711-itemsize
     var itemSize: CGSize {

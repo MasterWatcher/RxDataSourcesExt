@@ -26,7 +26,7 @@ public class TableDirector: NSObject {
     }
 
     lazy var dataSource: DataSource = {
-        let configureCell: DataSource.ConfigureCell = {(_, tableView, indexPath, item) in
+        let configureCell: DataSource.ConfigureCell = { (_, tableView, indexPath, item) in
             self.cellRegisterer.register(cellType: item.tableCellType, for: item.tableReuseIdentifier, in: tableView)
             let cell = tableView.dequeueReusableCell(withIdentifier: item.tableReuseIdentifier)!
             item.configure(cell)

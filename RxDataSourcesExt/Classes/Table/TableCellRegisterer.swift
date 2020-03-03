@@ -9,7 +9,7 @@ import Foundation
 
 class TableCellRegisterer {
 
-     private var registeredIdentifiers = Set<String>()
+    private var registeredIdentifiers = Set<String>()
 
     func register(cellType: UITableViewCell.Type, for reuseIdentifier: String, in tableView: UITableView) {
         guard !registeredIdentifiers.contains(reuseIdentifier) else { return }

@@ -11,19 +11,20 @@ public struct AnyCollectionItem: CollectionItemType {
 
     let item: CollectionItemType
 
-    var id: String { item.id }
-    var collectionReuseIdentifier: String { item.collectionReuseIdentifier }
-    var itemSize: CGSize { item.itemSize }
+    public var id: String { item.id }
+    public var collectionReuseIdentifier: String { item.collectionReuseIdentifier }
+    public var collectionCellType: UICollectionViewCell.Type { item.collectionCellType }
+    public var itemSize: CGSize { item.itemSize }
 
     init(_ item: CollectionItemType) {
         self.item = item
     }
 
-    func configure(_ cell: UICollectionViewCell) {
+    public func configure(_ cell: UICollectionViewCell) {
         item.configure(cell)
     }
 
-    func isEqualTo(_ other: CollectionItemType) -> Bool {
+    public func isEqualTo(_ other: CollectionItemType) -> Bool {
         item.isEqualTo(other)
     }
 }
