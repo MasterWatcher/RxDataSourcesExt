@@ -20,7 +20,7 @@ extension Reactive where Base: UICollectionView {
          return ControlEvent(events: source)
      }
 
-    func viewModel<T>(at indexPath: IndexPath) -> T? {
+    public func viewModel<T>(at indexPath: IndexPath) -> T? {
         guard let dataSource = self.dataSource.forwardToDelegate() as? SectionedViewDataSourceType else { return nil }
         guard let viewModel = try? dataSource.model(at: indexPath) else { return nil }
         return (viewModel as? AnyCollectionItem)
