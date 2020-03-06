@@ -26,9 +26,7 @@ class CollectionDirector: NSObject {
 
     lazy var dataSource: DataSource = {
         let configureCell: DataSource.ConfigureCell = { (_, collectionView, indexPath, item) in
-            self.cellRegisterer.register(cellType: item.collectionCellType,
-                                    for: item.collectionReuseIdentifier,
-                                    indexPath: indexPath, in: collectionView)
+            collectionView.register(item.collectionCellType, forCellWithReuseIdentifier: item.collectionReuseIdentifier)
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: item.collectionReuseIdentifier, for: indexPath)
             item.configure(cell)
             self.cellConfigured.accept((cell, item))
