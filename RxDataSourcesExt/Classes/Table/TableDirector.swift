@@ -16,7 +16,7 @@ public class TableDirector: NSObject {
 
     typealias DataSource = RxTableViewSectionedAnimatedDataSource<TableSectionModel>
 
-    lazy var collectionDirector = CollectionDirector(animationConfiguration: .fade)
+    var collectionDirectors = [String: CollectionDirector]()
     let cellConfigured = PublishRelay<TableConfigurationData>()
     private let animationConfiguration: AnimationConfiguration?
     private lazy var cellRegisterer = TableCellRegisterer()
@@ -32,7 +32,7 @@ public class TableDirector: NSObject {
             item.configure(cell)
             switch item.nestedType {
             case .none: break
-            case let .collection(sections): self.configureNestedCollection(with: cell, sections: sections)
+            case let .collection(sections): self.configureNestedCollection(with: cell, sections: sections, id: item.id)
             }
             self.cellConfigured.accept((cell, item, indexPath))
             return cell
@@ -53,12 +53,20 @@ public class TableDirector: NSObject {
         return dataSource
     }()
 
-    private func configureNestedCollection(with cell: UITableViewCell, sections: [CollectionSectionModel]) {
+    private func configureNestedCollection(with cell: UITableViewCell, sections: [CollectionSectionModel], id: String) {
         guard let cell = cell as? CollectionContainableCell else { return }
+        let dicrector: CollectionDirector
+        if let collectionDirector = collectionDirectors[id] {
+            dicrector = collectionDirector
+        } else {
+            dicrector = CollectionDirector(animationConfiguration: .fade)
+            collectionDirectors[id] = dicrector
+        }
+
         Observable.just(sections)
-            .bind(to: cell.collectionView.rx.items(director: collectionDirector))
+            .bind(to: cell.collectionView.rx.items(director: dicrector))
             .disposed(by: cell.disposeBag)
-        cell.collectionView.rx.setDelegate(collectionDirector)
+        cell.collectionView.rx.setDelegate(dicrector)
             .disposed(by: cell.disposeBag)
     }
 }
