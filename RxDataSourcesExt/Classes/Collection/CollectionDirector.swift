@@ -25,11 +25,11 @@ class CollectionDirector: NSObject {
     }
 
     lazy var dataSource: DataSource = {
-        let configureCell: DataSource.ConfigureCell = { (_, collectionView, indexPath, item) in
+        let configureCell: DataSource.ConfigureCell = { [weak self] (_, collectionView, indexPath, item) in
             collectionView.register(item.collectionCellType, forCellWithReuseIdentifier: item.collectionReuseIdentifier)
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: item.collectionReuseIdentifier, for: indexPath)
             item.configure(cell)
-            self.cellConfigured.accept((cell, item))
+            self?.cellConfigured.accept((cell, item))
             return cell
         }
         let dataSource = DataSource(animationConfiguration: animationConfiguration ?? AnimationConfiguration(),

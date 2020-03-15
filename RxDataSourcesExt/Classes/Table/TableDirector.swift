@@ -26,15 +26,15 @@ public class TableDirector: NSObject {
     }
 
     lazy var dataSource: DataSource = {
-        let configureCell: DataSource.ConfigureCell = { (_, tableView, indexPath, item) in
-            self.cellRegisterer.register(cellType: item.tableCellType, for: item.tableReuseIdentifier, in: tableView)
+        let configureCell: DataSource.ConfigureCell = { [weak self] (_, tableView, indexPath, item) in
+            self?.cellRegisterer.register(cellType: item.tableCellType, for: item.tableReuseIdentifier, in: tableView)
             let cell = tableView.dequeueReusableCell(withIdentifier: item.tableReuseIdentifier)!
             item.configure(cell)
             switch item.nestedType {
             case .none: break
-            case let .collection(sections): self.configureNestedCollection(with: cell, sections: sections, id: item.id)
+            case let .collection(sections): self?.configureNestedCollection(with: cell, sections: sections, id: item.id)
             }
-            self.cellConfigured.accept((cell, item, indexPath))
+            self?.cellConfigured.accept((cell, item, indexPath))
             return cell
         }
 
