@@ -43,20 +43,6 @@ extension ObservableType where E: DisposableCell {
     }
 }
 
-extension ObservableType where E: CollectionContainableCell {
-    //Guarantee that any Observable from cell will be disposed by cell's disposeBag
-    func flatMapAndDisposeInCell<U, O: ObservableType>(_ selector: @escaping (E) -> O) -> Observable<U> where O.E == U {
-        flatMap { cell -> Observable<U> in
-            let newObservable = selector(cell)
-            let relay = PublishRelay<U>()
-            newObservable.asObservable()
-                .bind(to: relay)
-                .disposed(by: cell.disposeBag)
-            return relay.asObservable()
-        }
-    }
-}
-
 extension ObservableType where E: ConfigurationDataType, E.T: DisposableCell {
     //Guarantee that any Observable from cell will be disposed by cell's disposeBag
     func flatMapAndDisposeInCell<U, O: ObservableType>(_ selector: @escaping (E) -> O) -> Observable<U> where O.E == U {

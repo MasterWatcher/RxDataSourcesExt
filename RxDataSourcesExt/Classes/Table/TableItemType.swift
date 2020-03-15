@@ -12,9 +12,8 @@ public enum NestedType {
     case collection(sections: [CollectionSectionModel])
 }
 
-public protocol TableItemType {
+public protocol TableItemType: Identifiable {
 
-    var id: String { get }
     var tableReuseIdentifier: String { get }
     var tableCellType: UITableViewCell.Type { get }
     var rowHeight: CGFloat { get }

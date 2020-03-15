@@ -39,21 +39,31 @@ extension Reactive where Base: TableDirector {
         }
     }
 
-//    public func nestedCellCreated<T: DisposableCell,
-//        U,
-//        O: ObservableType>
-//        (_ cellType: T.Type, closure: @escaping (T) -> O) -> Observable<U>
-//        where O.E == U {
-//            base.collectionDirector.rx.cellCreated(T.self, closure: closure)
-//    }
-//
-//    public func nestedCellCreated<T: ConfigurableCell,
-//          U,
-//          O: ObservableType>
-//        (_ cellType: T.Type, closure: @escaping (T, T.ViewModel) -> O) -> Observable<U>
-//          where O.E == U {
-//              base.collectionDirector.rx.cellCreated(T.self, closure: closure)
-//      }
+    public func nestedCellCreated<T: DisposableCell, U, O: ObservableType, C: CollectionContainableCell & ConfigurableCell>(
+        _ cellType: T.Type,
+        in containerCellType: C.Type,
+        closure: @escaping (T) -> O) -> Observable<U>
+        where O.E == U {
+            return base.cellConfigured
+                .filterCast(C.self)
+                .flatMapAndDisposeInCell { data -> Observable<U> in
+                    guard let collectionDirector = self.base.collectionDirectors[data.item.id] else { return .never() }
+                    return collectionDirector.rx.cellCreated(T.self, closure: closure)
+            }
+    }
+
+    public func nestedCellCreated<T: ConfigurableCell, U, O: ObservableType, C: CollectionContainableCell & ConfigurableCell>(
+        _ cellType: T.Type,
+        in containerCellType: C.Type,
+        closure: @escaping (T, T.ViewModel) -> O) -> Observable<U>
+        where O.E == U {
+            return base.cellConfigured
+                .filterCast(C.self)
+                .flatMapAndDisposeInCell { data -> Observable<U> in
+                    guard let collectionDirector = self.base.collectionDirectors[data.item.id] else { return .never() }
+                    return collectionDirector.rx.cellCreated(T.self, closure: closure)
+            }
+    }
 
     public func nestedViewModelSelected<T, C: CollectionContainableCell>(_ modelType: T.Type, in cellType: C.Type) -> Observable<T> {
         return base.cellConfigured

@@ -7,9 +7,8 @@
 
 import UIKit
 
-public protocol CollectionItemType {
+public protocol CollectionItemType: Identifiable {
 
-    var id: String { get }
     var collectionReuseIdentifier: String { get }
     var collectionCellType: UICollectionViewCell.Type { get }
     var itemSize: CGSize { get }

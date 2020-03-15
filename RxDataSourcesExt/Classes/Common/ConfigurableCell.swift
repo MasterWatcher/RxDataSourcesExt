@@ -7,7 +7,7 @@
 
 public protocol ConfigurableCell: DisposableCell {
 
-    associatedtype ViewModel
+    associatedtype ViewModel: Identifiable
 
     func configure(with: ViewModel)
 }

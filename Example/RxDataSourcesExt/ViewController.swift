@@ -29,15 +29,15 @@ class ViewController: UIViewController {
             TimeCellViewModel(title: "12:00"),
             TimeCellViewModel(title: "13:00")])
         let nestedSection2 = CollectionSectionModel(items: [
-            TextCollectionCellViewModel(title: "test"),
-            TextCollectionCellViewModel(title: "test"),
-            TextCollectionCellViewModel(title: "test"),
-            TextCollectionCellViewModel(title: "test"),
-            TextCollectionCellViewModel(title: "test"),
-            TextCollectionCellViewModel(title: "test")])
+            TextCollectionCellViewModel(title: "test1"),
+            TextCollectionCellViewModel(title: "test2"),
+            TextCollectionCellViewModel(title: "test3"),
+            TextCollectionCellViewModel(title: "test4"),
+            TextCollectionCellViewModel(title: "test5"),
+            TextCollectionCellViewModel(title: "test6")])
         let collectionItem = EmbedCollectionCellViewModel(id: "collection", nestedSections: [nestedSection])
         let collectionItem2 = EmbedCollectionCellViewModel(id: "collection1", nestedSections: [nestedSection2])
-        let sections = [TableSectionModel(items: [collectionItem, buttonCell, labelItem, labelItem, labelItem, collectionItem2])]
+        let sections = [TableSectionModel(items: [collectionItem2, collectionItem, buttonCell, labelItem, labelItem, labelItem])]
 
         let director = TableDirector(animationConfiguration: .shift)
 
@@ -67,7 +67,21 @@ class ViewController: UIViewController {
                 print("button tapped with title = \(title)")
             })
             .disposed(by: disposeBag)
+
+
+        director.rx.nestedCellCreated(TextCollectionCell.self, in: EmbedCollectionCell.self) { $0.button.rx.tap }
+            .subscribe(onNext: { value in
+                print("tap")
+            })
+            .disposed(by: disposeBag)
+
+        director.rx.nestedCellCreated(TextCollectionCell.self, in: EmbedCollectionCell.self) { cell, item in
+            return cell.button.rx.tap
+                .map { item.title }
+        }
+        .subscribe(onNext: { value in
+            print("\(value) tap")
+        })
+        .disposed(by: disposeBag)
     }
 }
-
-

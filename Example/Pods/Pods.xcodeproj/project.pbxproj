@@ -219,7 +219,7 @@
 		9604468AF9857D681BB525A7EA3E6306 /* UILabel+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A4648A796CBA796989713474675713 /* UILabel+Rx.swift */; };
 		97BA15F4610EF6F62CBCCC9F8EABD9E4 /* Signal+Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = E993A19F7C0463A83DBCDED994CC6EB0 /* Signal+Subscription.swift */; };
 		98AE4E2F24A858A47B5A1B405CEAD8FD /* UILayoutSupport+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD95DC87001364CFC6D5B9AD511E9C7 /* UILayoutSupport+Extensions.swift */; };
-		9980754CDB546B06575D9677547CDB2B /* CollectionDIrector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D7968B25967B23C65F806F9968761A /* CollectionDIrector.swift */; };
+		9980754CDB546B06575D9677547CDB2B /* CollectionDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D7968B25967B23C65F806F9968761A /* CollectionDirector.swift */; };
 		99E50F32B9EF81395677622D41AF5CB2 /* SectionedViewDataSourceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01820E4F052E76C794C101B337C87369 /* SectionedViewDataSourceType.swift */; };
 		9B611C913C9C0BEBC0C3AA506E056F33 /* DeprecationWarner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ADA05156E788603FE8F43C28DF7C66 /* DeprecationWarner.swift */; };
 		9B6355C7A08E15567D290979084DB248 /* _RXObjCRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = E555D7617B27D910A40B87BCEA9D87DE /* _RXObjCRuntime.m */; };
@@ -347,6 +347,7 @@
 		E3696F799D72976AC081539AAC7B824B /* AddRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EE17C0E10CE6365E8B9BB5C06031A8 /* AddRef.swift */; };
 		E405BEE5687735D0ECCD36B5686F3911 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B2CD1952A82DCFA3EE0631F0ECE4AAA /* Foundation.framework */; };
 		E4CEB39E240E6E8B00071655 /* CollectionCellRegisterer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CEB39D240E6E8B00071655 /* CollectionCellRegisterer.swift */; };
+		E4DD46B62417E9BE003351DF /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DD46B52417E9BE003351DF /* Identifiable.swift */; };
 		E4EB8550963D3F733A1191A9CEAAC995 /* RxWebViewDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC40B6F98E4852C15BFF1F1108E8D316 /* RxWebViewDelegateProxy.swift */; };
 		E5334E224BB2A23364EBF1D797670B30 /* PrimitiveSequence+Zip+arity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A71F4142D1DE39E1BC7A165E4504F26 /* PrimitiveSequence+Zip+arity.swift */; };
 		E559ACAD9C3F425D45B0C4E03972E8DF /* UIScrollView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FCCA5B313C17F9A12EC9F0EFC334E9 /* UIScrollView+Rx.swift */; };
@@ -719,7 +720,7 @@
 		870EE9740BB85FCE11BD4A1A77720FE7 /* DeprecationWarner.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DeprecationWarner.swift; path = Platform/DeprecationWarner.swift; sourceTree = "<group>"; };
 		8788AFA77449D1386BD287D1763C677A /* Driver+Subscription.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Driver+Subscription.swift"; path = "RxCocoa/Traits/Driver/Driver+Subscription.swift"; sourceTree = "<group>"; };
 		883E19D95C63C2070460992D1B3AA6C6 /* StartWith.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StartWith.swift; path = RxSwift/Observables/StartWith.swift; sourceTree = "<group>"; };
-		89D7968B25967B23C65F806F9968761A /* CollectionDIrector.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CollectionDIrector.swift; sourceTree = "<group>"; };
+		89D7968B25967B23C65F806F9968761A /* CollectionDirector.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CollectionDirector.swift; sourceTree = "<group>"; };
 		8A55CC80D8E75FCF55D9EDA4974CCE35 /* Bag.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Bag.swift; path = Platform/DataStructures/Bag.swift; sourceTree = "<group>"; };
 		8ACB41427F51C21AC48B2737B8FE0441 /* SnapKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SnapKit.xcconfig; sourceTree = "<group>"; };
 		8B8B6931D66B3246FDD224944A4985AD /* Pods-RxDataSourcesExt_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RxDataSourcesExt_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -886,6 +887,7 @@
 		E40E819D1279D3911B57EBEC58A47520 /* TableSectionModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TableSectionModel.swift; sourceTree = "<group>"; };
 		E45BD2B222B6B8A8AD45A5BFA860CE07 /* Debounce.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Debounce.swift; path = RxSwift/Observables/Debounce.swift; sourceTree = "<group>"; };
 		E4CEB39D240E6E8B00071655 /* CollectionCellRegisterer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCellRegisterer.swift; sourceTree = "<group>"; };
+		E4DD46B52417E9BE003351DF /* Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
 		E5197672117DE646D0FF494C0FE44616 /* NSTextView+Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSTextView+Rx.swift"; path = "RxCocoa/macOS/NSTextView+Rx.swift"; sourceTree = "<group>"; };
 		E54E891CFC1579FA499DA3A00E040E68 /* RxTextViewDelegateProxy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RxTextViewDelegateProxy.swift; path = RxCocoa/iOS/Proxies/RxTextViewDelegateProxy.swift; sourceTree = "<group>"; };
 		E5529E53A850702872D7351758418F80 /* IntegerType+IdentifiableType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "IntegerType+IdentifiableType.swift"; path = "Sources/RxDataSources/IntegerType+IdentifiableType.swift"; sourceTree = "<group>"; };
@@ -1543,7 +1545,7 @@
 				1919576039777F10E90C18580CFD0FEA /* AnyCollectionItem.swift */,
 				E4CEB39D240E6E8B00071655 /* CollectionCellRegisterer.swift */,
 				FB5E3C1146F7832A0A636D0A2D0B15E5 /* CollectionCellViewModel.swift */,
-				89D7968B25967B23C65F806F9968761A /* CollectionDIrector.swift */,
+				89D7968B25967B23C65F806F9968761A /* CollectionDirector.swift */,
 				24D925AFD5E48E9344D0C48D65EA94E3 /* CollectionDirector+Rx.swift */,
 				ACAC1CA6BF9AEDF569F02CAF303E6EC2 /* CollectionItemType.swift */,
 				DBCEF979E335DC7CE7E8C545D77FB2E0 /* CollectionSectionModel.swift */,
@@ -1644,6 +1646,7 @@
 				FBEE0A22A5ED61A6A61F296F776A3A1F /* DisposableCell.swift */,
 				7D6A74662070245A177C8E86BFDEA116 /* ObservableType+Operators.swift */,
 				23B0FCC7D91EBBC4148E3B2D8C5DAF8F /* SizeChangeableCell.swift */,
+				E4DD46B52417E9BE003351DF /* Identifiable.swift */,
 			);
 			name = Common;
 			path = RxDataSourcesExt/Classes/Common;
@@ -2114,7 +2117,7 @@
 				D4F5B4907935AB6B788B9B1586D9E8A5 /* CollectionCellViewModel.swift in Sources */,
 				8E30FDE7139DF19312DC9CAF47309210 /* CollectionContainableCell.swift in Sources */,
 				5BBFB3C12051F566081336D18B9C41D0 /* CollectionDirector+Rx.swift in Sources */,
-				9980754CDB546B06575D9677547CDB2B /* CollectionDIrector.swift in Sources */,
+				9980754CDB546B06575D9677547CDB2B /* CollectionDirector.swift in Sources */,
 				B114F5FD505C8036531E2D73F6EBA997 /* CollectionItemType.swift in Sources */,
 				D826133C5D4D0591E024D39836390B88 /* CollectionSectionModel.swift in Sources */,
 				BC32468EF6D3BEED4E7DE80FD103C01C /* ConfigurableCell.swift in Sources */,
@@ -2130,6 +2133,7 @@
 				B91B2F6D1635827BF9AD51FC1731BCE2 /* TableDirector+Rx.swift in Sources */,
 				BC75A5228DE1F6DFF67C4C92929F5D56 /* TableDirector.swift in Sources */,
 				3AFF6526A293F49F765EE61D1B967744 /* TableItemType.swift in Sources */,
+				E4DD46B62417E9BE003351DF /* Identifiable.swift in Sources */,
 				D60809FBEA62F0721B6A67F4F32FD244 /* TableSectionModel.swift in Sources */,
 				0935BD7E640426F775B07CAAF890E8E9 /* UICollectionView+Rx.swift in Sources */,
 				01D7D9382856C0F5EE3FFD1CE10ADA76 /* UITableView+Rx.swift in Sources */,

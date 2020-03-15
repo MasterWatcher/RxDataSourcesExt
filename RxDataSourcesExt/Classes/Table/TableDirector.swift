@@ -55,18 +55,13 @@ public class TableDirector: NSObject {
 
     private func configureNestedCollection(with cell: UITableViewCell, sections: [CollectionSectionModel], id: String) {
         guard let cell = cell as? CollectionContainableCell else { return }
-        let dicrector: CollectionDirector
-        if let collectionDirector = collectionDirectors[id] {
-            dicrector = collectionDirector
-        } else {
-            dicrector = CollectionDirector(animationConfiguration: .fade)
-            collectionDirectors[id] = dicrector
-        }
+        let director = CollectionDirector(animationConfiguration: .fade)
+        collectionDirectors[id] = director
 
         Observable.just(sections)
-            .bind(to: cell.collectionView.rx.items(director: dicrector))
+            .bind(to: cell.collectionView.rx.items(director: director))
             .disposed(by: cell.disposeBag)
-        cell.collectionView.rx.setDelegate(dicrector)
+        cell.collectionView.rx.setDelegate(director)
             .disposed(by: cell.disposeBag)
     }
 }
