@@ -8,7 +8,7 @@
 import RxSwift
 
 extension Reactive where Base: CollectionDirector {
-    func cellCreated<T: DisposableCell,
+    public func cellCreated<T: DisposableCell,
         U,
         O: ObservableType>
         (_ cellType: T.Type, closure: @escaping (T) -> O) -> Observable<U>
@@ -19,7 +19,7 @@ extension Reactive where Base: CollectionDirector {
                 .flatMapAndDisposeInCell(closure)
     }
 
-    func cellCreated<T: ConfigurableCell,
+    public func cellCreated<T: ConfigurableCell,
         U,
         O: ObservableType>(_ cellType: T.Type, closure: @escaping (T, T.ViewModel) -> O) -> Observable<U>
         where O.E == U {

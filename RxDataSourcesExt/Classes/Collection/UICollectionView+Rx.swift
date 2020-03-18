@@ -27,7 +27,7 @@ extension Reactive where Base: UICollectionView {
             .flatMap { $0.item as? T }
     }
 
-    func items<O: ObservableType>(director: CollectionDirector) -> (_ source: O) -> Disposable
+    public func items<O: ObservableType>(director: CollectionDirector) -> (_ source: O) -> Disposable
         where O.E == [CollectionSectionModel] {
             items(dataSource: director.dataSource)
     }

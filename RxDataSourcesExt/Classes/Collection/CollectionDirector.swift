@@ -12,7 +12,7 @@ import RxSwift
 
 typealias CollectionConfigurationData = (cell: UICollectionViewCell, item: AnyCollectionItem)
 
-class CollectionDirector: NSObject {
+public class CollectionDirector: NSObject {
 
     typealias DataSource = RxCollectionViewSectionedAnimatedDataSource<CollectionSectionModel>
 
@@ -20,7 +20,7 @@ class CollectionDirector: NSObject {
     private let animationConfiguration: AnimationConfiguration?
     private lazy var cellRegisterer = CollectionCellRegisterer()
 
-    init(animationConfiguration: AnimationConfiguration? = nil) {
+    public init(animationConfiguration: AnimationConfiguration? = nil) {
         self.animationConfiguration = animationConfiguration
     }
 
@@ -42,7 +42,7 @@ class CollectionDirector: NSObject {
 }
 
 extension CollectionDirector: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return dataSource[indexPath].itemSize
     }
 }
