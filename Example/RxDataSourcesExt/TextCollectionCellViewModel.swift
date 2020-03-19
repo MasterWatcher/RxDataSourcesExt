@@ -15,6 +15,7 @@ struct TextCollectionCellViewModel: CollectionCellViewModel {
 
     let id: String = UUID().uuidString
     let title: String
-    let itemSize = CGSize(width: 72, height: 72)
+    let itemWidth: CollectionItemWidth = .absolute(72)
+    let itemHeight: CGFloat = 72
 }
 

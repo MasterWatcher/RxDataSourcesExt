@@ -14,7 +14,8 @@ public struct AnyCollectionItem: CollectionItemType {
     public var id: String { item.id }
     public var collectionReuseIdentifier: String { item.collectionReuseIdentifier }
     public var collectionCellType: UICollectionViewCell.Type { item.collectionCellType }
-    public var itemSize: CGSize { item.itemSize }
+    public var itemWidth: CollectionItemWidth { item.itemWidth }
+    public var itemHeight: CGFloat { item.itemHeight }
 
     init(_ item: CollectionItemType) {
         self.item = item

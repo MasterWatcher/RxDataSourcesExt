@@ -42,7 +42,31 @@ public class CollectionDirector: NSObject {
 }
 
 extension CollectionDirector: UICollectionViewDelegateFlowLayout {
+
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return dataSource[indexPath].itemSize
+        let item = dataSource[indexPath]
+        let width: CGFloat
+        switch item.itemWidth {
+        case let .absolute(value):
+            width = value
+        case let .relative(percentage):
+            let collectionWidth = obtainCollectionWidth(collectionView: collectionView,
+                                                        minimumInteritemSpacingIncluded: percentage != 100)
+            width = collectionWidth * CGFloat(percentage) / 100.0
+        }
+        return CGSize(width: width, height: item.itemHeight)
+    }
+
+    func obtainCollectionWidth(collectionView: UICollectionView, minimumInteritemSpacingIncluded: Bool) -> CGFloat {
+        let insetContainerSize = collectionView.bounds.inset(by: collectionView.adjustedContentInset).size
+        var width = insetContainerSize.width
+        guard let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
+            return width
+        }
+        width -= flowLayout.sectionInset.left + flowLayout.sectionInset.right
+        if minimumInteritemSpacingIncluded {
+            width -= flowLayout.minimumInteritemSpacing
+        }
+        return width
     }
 }

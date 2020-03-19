@@ -20,9 +20,8 @@ public extension CollectionCellViewModel {
     var collectionCellType: UICollectionViewCell.Type { CollectionCellType.self }
 
     //according to https://developer.apple.com/documentation/uikit/uicollectionviewflowlayout/1617711-itemsize
-    var itemSize: CGSize {
-        CGSize(width: 50, height: 50)
-    }
+    var itemWidth: CollectionItemWidth { .absolute(50) }
+    var itemHeight: CGFloat { 50 }
 
     func configure(_ cell: UICollectionViewCell) {
         (cell as? CollectionCellType)?.configure(with: self)

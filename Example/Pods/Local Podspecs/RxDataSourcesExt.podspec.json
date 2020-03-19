@@ -1,6 +1,6 @@
 {
   "name": "RxDataSourcesExt",
-  "version": "0.1.0",
+  "version": "0.2.1",
   "summary": "Useful extension for RxDataSources",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/MasterWatcher/RxDataSourcesExt",
@@ -13,11 +13,14 @@
   },
   "source": {
     "git": "https://github.com/MasterWatcher/RxDataSourcesExt.git",
-    "tag": "0.1.0"
+    "tag": "0.2.1"
   },
   "platforms": {
     "ios": "11.0"
   },
+  "swift_versions": [
+    "4.2"
+  ],
   "source_files": "RxDataSourcesExt/Classes/**/*",
   "dependencies": {
     "RxDataSources": [
@@ -26,5 +29,6 @@
     "RxSwift": [
       "~> 4.2"
     ]
-  }
+  },
+  "swift_version": "4.2"
 }
