@@ -13,5 +13,5 @@ import RxSwift
 //      disposeBag = DisposeBag()
 //  }
 public protocol DisposableCell {
-    var disposeBag: DisposeBag { get }
+    var disposeBag: DisposeBag { get set }
 }
