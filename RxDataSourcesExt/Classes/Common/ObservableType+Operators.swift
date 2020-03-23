@@ -18,14 +18,14 @@ extension ObservableType {
 extension ObservableType where E == CollectionConfigurationData {
     func filterCast<T: ConfigurableCell>(_ type: T.Type) -> Observable<ConfigurationData<T>> {
         filter { $0.cell is T && $0.item.item is T.ViewModel }
-            .map { ConfigurationData(cell: $0.cell as! T, item: $0.item.item as! T.ViewModel) }
+            .map { ConfigurationData(cell: $0.cell as! T, item: $0.item.item as! T.ViewModel, indexPath: $0.indexPath) }
     }
 }
 
 extension ObservableType where E == TableConfigurationData {
     func filterCast<T: ConfigurableCell>(_ type: T.Type) -> Observable<ConfigurationData<T>> {
         filter { $0.cell is T && $0.item.item is T.ViewModel }
-            .map { ConfigurationData(cell: $0.cell as! T, item: $0.item.item as! T.ViewModel) }
+            .map { ConfigurationData(cell: $0.cell as! T, item: $0.item.item as! T.ViewModel, indexPath: $0.indexPath) }
     }
 }
 

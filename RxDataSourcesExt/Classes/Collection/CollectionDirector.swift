@@ -10,7 +10,7 @@ import RxDataSources
 import RxCocoa
 import RxSwift
 
-typealias CollectionConfigurationData = (cell: UICollectionViewCell, item: AnyCollectionItem)
+typealias CollectionConfigurationData = (cell: UICollectionViewCell, item: AnyCollectionItem, indexPath: IndexPath)
 
 public class CollectionDirector: NSObject {
 
@@ -29,7 +29,7 @@ public class CollectionDirector: NSObject {
             collectionView.register(item.collectionCellType, forCellWithReuseIdentifier: item.collectionReuseIdentifier)
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: item.collectionReuseIdentifier, for: indexPath)
             item.configure(cell)
-            self?.cellConfigured.accept((cell, item))
+            self?.cellConfigured.accept((cell, item, indexPath))
             return cell
         }
         let dataSource = DataSource(animationConfiguration: animationConfiguration ?? AnimationConfiguration(),

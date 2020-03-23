@@ -68,6 +68,15 @@ class ViewController: UIViewController {
             })
             .disposed(by: disposeBag)
 
+        director.rx.cellCreated(ButtonCell.self) { cell, viewModel, indexPath in
+            cell.button.rx.tap
+                .map { indexPath.row }
+        }
+        .subscribe(onNext: { index in
+            print("button tapped with index = \(index)")
+        })
+            .disposed(by: disposeBag)
+
 
         director.rx.nestedCellCreated(TextCollectionCell.self, in: EmbedCollectionCell.self) { $0.button.rx.tap }
             .subscribe(onNext: { value in

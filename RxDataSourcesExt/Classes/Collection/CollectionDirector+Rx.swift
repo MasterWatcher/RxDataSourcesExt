@@ -27,4 +27,13 @@ extension Reactive where Base: CollectionDirector {
                 .filterCast(T.self)
                 .flatMapAndDisposeInCell { closure($0.cell, $0.item) }
     }
+
+    public func cellCreated<T: ConfigurableCell,
+        U,
+        O: ObservableType>(_ cellType: T.Type, closure: @escaping (T, T.ViewModel, IndexPath) -> O) -> Observable<U>
+        where O.E == U {
+            return base.cellConfigured
+                .filterCast(T.self)
+                .flatMapAndDisposeInCell { closure($0.cell, $0.item, $0.indexPath) }
+    }
 }

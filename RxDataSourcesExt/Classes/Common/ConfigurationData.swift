@@ -8,4 +8,5 @@
 struct ConfigurationData<T: ConfigurableCell>: ConfigurationDataType {
     let cell: T
     let item: T.ViewModel
+    let indexPath: IndexPath
 }

@@ -29,6 +29,15 @@ extension Reactive where Base: TableDirector {
                 .flatMapAndDisposeInCell { closure($0.cell, $0.item) }
     }
 
+    public func cellCreated<T: ConfigurableCell,
+        U,
+        O: ObservableType>(_ cellType: T.Type, closure: @escaping (T, T.ViewModel, IndexPath) -> O) -> Observable<U>
+        where O.E == U {
+            return base.cellConfigured
+                .filterCast(T.self)
+                .flatMapAndDisposeInCell { closure($0.cell, $0.item, $0.indexPath) }
+    }
+
     public func cellSizeChanged<T: DisposableCell & SizeChangeableCell>(_ cellType: T.Type) -> Observable<IndexPath> {
         return base.cellConfigured
             .flatMap { data -> Observable<IndexPath> in
@@ -56,6 +65,19 @@ extension Reactive where Base: TableDirector {
         _ cellType: T.Type,
         in containerCellType: C.Type,
         closure: @escaping (T, T.ViewModel) -> O) -> Observable<U>
+        where O.E == U {
+            return base.cellConfigured
+                .filterCast(C.self)
+                .flatMapAndDisposeInCell { data -> Observable<U> in
+                    guard let collectionDirector = self.base.collectionDirectors[data.item.id] else { return .never() }
+                    return collectionDirector.rx.cellCreated(T.self, closure: closure)
+            }
+    }
+
+    public func nestedCellCreated<T: ConfigurableCell, U, O: ObservableType, C: CollectionContainableCell & ConfigurableCell>(
+        _ cellType: T.Type,
+        in containerCellType: C.Type,
+        closure: @escaping (T, T.ViewModel, IndexPath) -> O) -> Observable<U>
         where O.E == U {
             return base.cellConfigured
                 .filterCast(C.self)
