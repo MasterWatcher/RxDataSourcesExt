@@ -9,6 +9,12 @@ import RxSwift
 
 extension Reactive where Base: TableDirector {
 
+    public func cellCreated<T: ConfigurableCell>(_ cellType: T.Type) -> Observable<(T, T.ViewModel, IndexPath)> {
+        return base.cellConfigured
+            .filterCast(T.self)
+            .map { ($0.cell, $0.item, $0.indexPath) }
+    }
+
     public func cellCreated<T: DisposableCell,
         U,
         O: ObservableType>
