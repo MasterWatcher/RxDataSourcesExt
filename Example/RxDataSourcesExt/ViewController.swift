@@ -92,5 +92,11 @@ class ViewController: UIViewController {
             print("\(value) tap")
         })
         .disposed(by: disposeBag)
+
+        director.rx.cellCreated(LabelCell.self)
+            .subscribe(onNext: { cell, viewModel, _ in
+                print("cell created \(viewModel.id)")
+            })
+            .disposed(by: disposeBag)
     }
 }
