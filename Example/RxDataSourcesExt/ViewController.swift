@@ -35,9 +35,23 @@ class ViewController: UIViewController {
             TextCollectionCellViewModel(title: "test4"),
             TextCollectionCellViewModel(title: "test5"),
             TextCollectionCellViewModel(title: "test6")])
+        let nestedSection3 = CollectionSectionModel(items: [
+            CardCellViewModel(title: "test1"),
+            CardCellViewModel(title: "test2"),
+            CardCellViewModel(title: "test3"),
+            CardCellViewModel(title: "test4"),
+            CardCellViewModel(title: "test5"),
+            CardCellViewModel(title: "test6")])
         let collectionItem = EmbedCollectionCellViewModel(id: "collection", nestedSections: [nestedSection])
         let collectionItem2 = EmbedCollectionCellViewModel(id: "collection1", nestedSections: [nestedSection2])
-        let sections = [TableSectionModel(items: [collectionItem2, collectionItem, buttonCell, labelItem, labelItem, labelItem])]
+        let collectionItem3 = EmbedCollectionCellViewModel(id: "collection2", nestedSections: [nestedSection3])
+        let sections = [TableSectionModel(items: [collectionItem3,
+                                                  collectionItem2,
+                                                  collectionItem,
+                                                  buttonCell,
+                                                  labelItem,
+                                                  labelItem,
+                                                  labelItem])]
 
         let director = TableDirector(animationConfiguration: .shift)
 

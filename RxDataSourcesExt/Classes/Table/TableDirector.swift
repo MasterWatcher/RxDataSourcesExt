@@ -20,6 +20,7 @@ public class TableDirector: NSObject {
     let cellConfigured = PublishRelay<TableConfigurationData>()
     private let animationConfiguration: AnimationConfiguration?
     private lazy var cellRegisterer = TableCellRegisterer()
+    private var collectionsOffsets = [IndexPath: CGPoint]()
 
     public init(animationConfiguration: AnimationConfiguration? = nil) {
         self.animationConfiguration = animationConfiguration
@@ -32,7 +33,11 @@ public class TableDirector: NSObject {
             item.configure(cell)
             switch item.nestedType {
             case .none: break
-            case let .collection(sections): self?.configureNestedCollection(with: cell, sections: sections, id: item.id)
+            case let .collection(sections): self?.configureNestedCollection(
+                with: cell,
+                indexPath: indexPath,
+                sections: sections,
+                id: item.id)
             }
             self?.cellConfigured.accept((cell, item, indexPath))
             return cell
@@ -53,7 +58,11 @@ public class TableDirector: NSObject {
         return dataSource
     }()
 
-    private func configureNestedCollection(with cell: UITableViewCell, sections: [CollectionSectionModel], id: String) {
+    private func configureNestedCollection(
+        with cell: UITableViewCell,
+        indexPath: IndexPath,
+        sections: [CollectionSectionModel],
+        id: String) {
         guard let cell = cell as? CollectionContainableCell else { return }
         let director = CollectionDirector(animationConfiguration: .fade)
         collectionDirectors[id] = director
@@ -63,11 +72,23 @@ public class TableDirector: NSObject {
             .disposed(by: cell.disposeBag)
         cell.collectionView.rx.setDelegate(director)
             .disposed(by: cell.disposeBag)
+
+        // This is called after `collectionView.rx.items` which call `subscribeProxyDataSource`
+        // because `subscribeProxyDataSource`  calls `layoutIfNeeded()`
+        // and resets collectionView's contentOffset to zero
+        if let offset = collectionsOffsets[indexPath] {
+            cell.collectionView.contentOffset = offset
+        }
     }
 }
 
 extension TableDirector : UITableViewDelegate {
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         dataSource[indexPath].rowHeight
+    }
+
+    public func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let cell = cell as? CollectionContainableCell else { return }
+        collectionsOffsets[indexPath] = cell.collectionView.contentOffset
     }
 }
