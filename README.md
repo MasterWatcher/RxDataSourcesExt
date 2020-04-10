@@ -9,7 +9,36 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-## Requirements
+# Getting Started
+
+## Creating your first list
+Create a view model for your cell that conforms to `TableCellViewModel` 
+```swift
+struct StringCellViewModel: TableCellViewModel {
+
+    typealias TableCellType = StringCell
+
+    let id: String
+    let text: String
+}
+```
+
+Create your cell that conforms to `ConfigurableCell`
+```swift
+class StringCell: UITableViewCell, ConfigurableCell {
+
+    var disposeBag = DisposeBag()
+
+    func configure(with viewmodel: StringCellViewModel) {
+        textLabel?.text = viewmodel.text
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
+    }
+}
+```
 
 ## Installation
 
